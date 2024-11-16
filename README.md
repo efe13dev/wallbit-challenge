@@ -13,9 +13,11 @@ Cada vez que se agrega un producto, vamos a obtener el producto desde la API y l
 La aplicación se vería así:
 
 ![Sin productos](./assets/app-0.jpg)
+
 > Inicialmente no hay productos en el carrito
 
 ![Con productos](./assets/app-1.jpg)
+
 > Con productos en el carrito
 
 ## Requisitos
