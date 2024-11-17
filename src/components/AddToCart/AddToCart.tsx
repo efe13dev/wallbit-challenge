@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import './AddToCart.css';
+import { useState } from 'react';
 import { getSingleProduct } from '../../services/getSingleProduct';
 
 import { Product } from '../../types';
@@ -9,7 +9,7 @@ interface AddToCartProps {
 }
 
 function AddToCart({ onAddProduct }: AddToCartProps) {
-  const [productId, setProductId] = useState<string>('');
+  const [productId, setProductId] = useState<Product['id']>();
   const [quantity, setQuantity] = useState<number>(1);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ function AddToCart({ onAddProduct }: AddToCartProps) {
   };
 
   const handleProductIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProductId(e.target.value);
+    setProductId(Number(e.target.value));
   };
 
   return (
