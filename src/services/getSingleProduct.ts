@@ -1,4 +1,6 @@
-export const getSingleProduct = async (id: string) => {
+import { Product } from '../types';
+
+export const getSingleProduct = async (id: Product['id']) => {
   try {
     const response = await fetch(`https://fakestoreapi.com/products/${id}`);
 
