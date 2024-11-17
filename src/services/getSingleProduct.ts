@@ -3,18 +3,14 @@ import { Product } from '../types';
 export const getSingleProduct = async (id: Product['id']) => {
   try {
     const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+    const data = await response.json();
 
-    if (!response.ok) {
-      throw new Error(`Error HTTP: ${response.status}`);
+    if (!response.ok || !data) {
+      throw new Error('Error al obtener el producto');
     }
 
-    const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
-    console.error('Error al obtener el producto:', error);
-    throw new Error(
-      'No se pudo obtener el producto. Por favor, intente más tarde.'
-    );
+    throw new Error('Error al obtener el producto');
   }
 };

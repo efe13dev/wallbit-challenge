@@ -24,13 +24,13 @@ La aplicación se vería así:
 
 La API que nos dió nuestro cliente es: [Fake Store API](https://fakestoreapi.com/). El cliente nos dijo que su stack de frontend es React, que prefiere el challenge hecho con eso, pero está abierto a cualquier stack que quieras usar.
 
-- [ ] Podemos agregar productos al carrito.
-- [ ] Manejar errores que nos devuelva la API.
-- [ ] Mostrar una lista con los productos agregados incluyendo `title`, `price` e `image` del producto y la `cantidad` que el usuario agregó.
+- [x] Podemos agregar productos al carrito.
+- [x] Manejar errores que nos devuelva la API.
+- [x] Mostrar una lista con los productos agregados incluyendo `title`, `price` e `image` del producto y la `cantidad` que el usuario agregó.
 
 ## Extras
 
-- [ ] El carrito se persiste al recargar la página.
+- [x] El carrito se persiste al recargar la página.
 - [ ] Mostrar el total de productos agregados.
 - [ ] Mostrar el costo total del carrito.
 - [ ] Mostrar la fecha de creación del carrito.

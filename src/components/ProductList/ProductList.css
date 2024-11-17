@@ -1,0 +1,32 @@
+.product-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-list table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.product-list th,
+.product-list td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.product-list th {
+  background-color: #d0d0d0;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.product-list .product-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}

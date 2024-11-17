@@ -36,3 +36,7 @@ form button {
   cursor: pointer;
   border-radius: 0.5rem;
 }
+
+.error-message {
+  color: darkred;
+}

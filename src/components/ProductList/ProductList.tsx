@@ -1,3 +1,4 @@
+import './ProductList.css';
 import { Product } from '../../types';
 
 interface ProductListProps {
@@ -6,18 +7,39 @@ interface ProductListProps {
 
 function ProductList({ products }: ProductListProps) {
   return (
-    <div>
+    <div className='product-list'>
       <h2>Lista de Productos</h2>
       {products.length === 0 ? (
         <p>No hay productos disponibles</p>
       ) : (
-        <ul>
-          {products.map((product: Product) => (
-            <li key={product.id}>
-              <p>Nombre: {product.title}</p>
-            </li>
-          ))}
-        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Precio Unidad</th>
+              <th>Precio Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product: Product, index) => (
+              <tr key={index}>
+                <td>
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className='product-image'
+                  />
+                </td>
+                <td>{product.title}</td>
+                <td>{product.quantity}</td>
+                <td>${product.price}</td>
+                <td>${Number(product.price) * product.quantity}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );

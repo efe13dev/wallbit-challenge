@@ -11,15 +11,22 @@ interface AddToCartProps {
 function AddToCart({ onAddProduct }: AddToCartProps) {
   const [productId, setProductId] = useState<Product['id']>();
   const [quantity, setQuantity] = useState<number>(1);
+  const [error, setError] = useState<string>('');
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError('');
 
-    const product = (await getSingleProduct(Number(productId))) as Product;
-    if (product) {
+    try {
+      const product = await getSingleProduct(Number(productId));
       onAddProduct({ ...product, quantity });
+      setProductId(undefined);
+      setQuantity(1);
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      }
     }
-    setProductId(undefined);
-    setQuantity(1);
   };
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,6 +40,7 @@ function AddToCart({ onAddProduct }: AddToCartProps) {
   return (
     <section>
       <p>Agrega los productos al carro de compra</p>
+
       <form onSubmit={handleSubmit}>
         <input
           className='quantity'
@@ -45,12 +53,13 @@ function AddToCart({ onAddProduct }: AddToCartProps) {
           className='product-id'
           type='text'
           placeholder='Id del producto'
-          value={productId}
+          value={productId ?? ''}
           onChange={handleProductIdChange}
         />
 
         <button type='submit'>Agregar</button>
       </form>
+      {error && <p className='error-message'>{error}</p>}
     </section>
   );
 }
