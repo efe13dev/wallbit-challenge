@@ -13,10 +13,13 @@ function AddToCart({ onAddProduct }: AddToCartProps) {
   const [quantity, setQuantity] = useState<number>(1);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const product = await getSingleProduct(Number(productId));
+
+    const product = (await getSingleProduct(Number(productId))) as Product;
     if (product) {
       onAddProduct({ ...product, quantity });
     }
+    setProductId(undefined);
+    setQuantity(1);
   };
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
