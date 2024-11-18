@@ -23,16 +23,38 @@ function App() {
   }, []);
 
   const handleAddProduct = (product: Product) => {
-    const updatedProducts = [...cartProducts, product];
+    // Buscar si el producto ya existe en el carrito
+    const existingProductIndex = cartProducts.findIndex(
+      (p) => p.id === product.id
+    );
+
+    let updatedProducts;
+
+    if (existingProductIndex >= 0) {
+      // Si existe, actualizar la cantidad
+      updatedProducts = cartProducts.map((p, index) => {
+        if (index === existingProductIndex) {
+          return {
+            ...p,
+            quantity: p.quantity + product.quantity
+          };
+        }
+        return p;
+      });
+    } else {
+      // Si no existe, agregar como nuevo producto
+      updatedProducts = [...cartProducts, product];
+
+      // Establecer la fecha solo si es el primer producto
+      if (cartProducts.length === 0) {
+        const startDate = getCurrentDate();
+        setCartStartDate(startDate);
+        localStorage.setItem('cartStartDate', startDate);
+      }
+    }
+
     setCartProducts(updatedProducts);
     localStorage.setItem('cartProducts', JSON.stringify(updatedProducts));
-
-    // Establecer la fecha solo si es el primer producto
-    if (cartProducts.length === 0) {
-      const startDate = getCurrentDate();
-      setCartStartDate(startDate);
-      localStorage.setItem('cartStartDate', startDate);
-    }
   };
 
   return (

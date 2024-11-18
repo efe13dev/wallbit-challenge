@@ -7,6 +7,15 @@ interface ProductListProps {
 }
 
 function ProductList({ products, cartStartDate }: ProductListProps) {
+  const totalItems = products.reduce(
+    (sum, product) => sum + product.quantity,
+    0
+  );
+  const totalCost = products.reduce(
+    (sum, product) => sum + Number(product.price) * product.quantity,
+    0
+  );
+
   return (
     <div className='product-list'>
       {products.length === 0 ? (
@@ -41,10 +50,17 @@ function ProductList({ products, cartStartDate }: ProductListProps) {
                   </td>
                   <td>{product.title}</td>
                   <td>{product.quantity}</td>
-                  <td>${product.price}</td>
-                  <td>${Number(product.price) * product.quantity}</td>
+                  <td>{product.price} $</td>
+                  <td>{Number(product.price) * product.quantity} $</td>
                 </tr>
               ))}
+              {/* Nueva fila para totales */}
+              <tr className='cart-totals'>
+                <td colSpan={2}>Total:</td>
+                <td>{totalItems} productos</td>
+                <td></td>
+                <td>{totalCost} $</td>
+              </tr>
             </tbody>
           </table>
         </>

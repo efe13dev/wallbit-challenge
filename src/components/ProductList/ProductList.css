@@ -35,3 +35,12 @@
   margin-bottom: 1rem;
   font-weight: 500;
 }
+
+.cart-totals {
+  font-weight: bold;
+  border-top: 2px solid #ccc;
+}
+
+.cart-totals td {
+  padding-top: 1rem;
+}
