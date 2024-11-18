@@ -14,6 +14,12 @@ form {
   display: flex;
   border: none;
   gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 form input {
   padding: 0.5rem;
@@ -39,4 +45,27 @@ form button {
 
 .error-message {
   color: darkred;
+}
+
+@media screen and (max-width: 480px) {
+  form {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  form input.quantity,
+  form input.product-id {
+    width: 100%;
+    max-width: none;
+  }
+
+  form button {
+    width: 100%;
+  }
+
+  section p {
+    text-align: center;
+    padding: 0 1rem;
+  }
 }

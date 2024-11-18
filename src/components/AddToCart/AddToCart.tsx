@@ -48,6 +48,7 @@ function AddToCart({ onAddProduct }: AddToCartProps) {
           placeholder='Cantidad'
           value={quantity}
           onChange={handleQuantityChange}
+          min={1}
         />
         <input
           className='product-id'
