@@ -23,7 +23,6 @@ function App() {
   }, []);
 
   const handleAddProduct = (product: Product) => {
-    // Buscar si el producto ya existe en el carrito
     const existingProductIndex = cartProducts.findIndex(
       (p) => p.id === product.id
     );
@@ -31,7 +30,6 @@ function App() {
     let updatedProducts;
 
     if (existingProductIndex >= 0) {
-      // Si existe, actualizar la cantidad
       updatedProducts = cartProducts.map((p, index) => {
         if (index === existingProductIndex) {
           return {
@@ -42,10 +40,8 @@ function App() {
         return p;
       });
     } else {
-      // Si no existe, agregar como nuevo producto
       updatedProducts = [...cartProducts, product];
 
-      // Establecer la fecha solo si es el primer producto
       if (cartProducts.length === 0) {
         const startDate = getCurrentDate();
         setCartStartDate(startDate);
@@ -57,6 +53,13 @@ function App() {
     localStorage.setItem('cartProducts', JSON.stringify(updatedProducts));
   };
 
+  const handleClearCart = () => {
+    setCartProducts([]);
+    setCartStartDate(undefined);
+    localStorage.removeItem('cartProducts');
+    localStorage.removeItem('cartStartDate');
+  };
+
   return (
     <main>
       <Header />
@@ -64,6 +67,7 @@ function App() {
       <ProductList
         products={cartProducts}
         cartStartDate={cartStartDate}
+        onClearCart={handleClearCart}
       />
     </main>
   );

@@ -42,13 +42,15 @@ function AddToCart({ onAddProduct }: AddToCartProps) {
       <p>Agrega los productos al carro de compra</p>
 
       <form onSubmit={handleSubmit}>
+        <label htmlFor='quantity'>Cantidad:</label>
         <input
+          id='quantity'
           className='quantity'
           type='number'
-          placeholder='Cantidad'
           value={quantity}
           onChange={handleQuantityChange}
           min={1}
+          aria-label='Cantidad de productos'
         />
         <input
           className='product-id'

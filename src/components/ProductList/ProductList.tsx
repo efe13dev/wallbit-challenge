@@ -4,9 +4,14 @@ import { Product } from '../../types';
 interface ProductListProps {
   products: Product[];
   cartStartDate?: string;
+  onClearCart: () => void;
 }
 
-function ProductList({ products, cartStartDate }: ProductListProps) {
+function ProductList({
+  products,
+  cartStartDate,
+  onClearCart
+}: ProductListProps) {
   const totalItems = products.reduce(
     (sum, product) => sum + product.quantity,
     0
@@ -20,14 +25,22 @@ function ProductList({ products, cartStartDate }: ProductListProps) {
     <div className='product-list'>
       {products.length === 0 ? (
         <>
-          <p>Carrito de compra</p>
-          <p>No hay productos en el carrito...</p>
+          <p className='cart-title'>Carrito de compra</p>
+          <p className='cart-empty'>No hay productos en el carrito...</p>
         </>
       ) : (
         <>
-          <p className='cart-date'>
-            Carrito de compra - Iniciado el {cartStartDate}
-          </p>
+          <div className='cart-header'>
+            <p className='cart-date'>
+              Carrito de compra - Iniciado el {cartStartDate}
+            </p>
+            <button
+              onClick={onClearCart}
+              className='clear-cart-button'
+            >
+              Vaciar Carrito
+            </button>
+          </div>
           <table>
             <thead>
               <tr>
@@ -54,12 +67,12 @@ function ProductList({ products, cartStartDate }: ProductListProps) {
                   <td>{Number(product.price) * product.quantity} $</td>
                 </tr>
               ))}
-              {/* Nueva fila para totales */}
+
               <tr className='cart-totals'>
                 <td colSpan={2}>Total:</td>
                 <td>{totalItems} productos</td>
                 <td></td>
-                <td>{totalCost} $</td>
+                <td>{totalCost.toFixed(2)} $</td>
               </tr>
             </tbody>
           </table>

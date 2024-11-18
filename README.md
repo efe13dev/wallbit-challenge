@@ -31,8 +31,8 @@ La API que nos dió nuestro cliente es: [Fake Store API](https://fakestoreapi.co
 ## Extras
 
 - [x] El carrito se persiste al recargar la página.
-- [ ] Mostrar el total de productos agregados.
-- [ ] Mostrar el costo total del carrito.
+- [x] Mostrar el total de productos agregados.
+- [x] Mostrar el costo total del carrito.
 - [x] Mostrar la fecha de creación del carrito.
 
 ## Bonus
