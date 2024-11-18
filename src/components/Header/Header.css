@@ -13,3 +13,15 @@ h1 {
   color: white;
   margin: 0;
 }
+
+@media screen and (max-width: 480px) {
+  header {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    text-align: center;
+    width: 100%;
+  }
+}

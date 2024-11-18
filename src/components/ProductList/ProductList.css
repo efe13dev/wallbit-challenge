@@ -87,3 +87,40 @@
 .clear-cart-button:hover {
   background-color: #34495e;
 }
+
+@media screen and (max-width: 480px) {
+  .product-list {
+    padding: 1rem;
+  }
+
+  .product-list table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .product-list th,
+  .product-list td {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .product-list .product-image {
+    width: 60px;
+    height: 60px;
+  }
+
+  .cart-title {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .cart-date {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .clear-cart-button {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}

@@ -50,8 +50,7 @@ form input.quantity {
 
 form input.product-id {
   width: auto;
-  min-width: 60px;
-  max-width: 200px;
+  min-width: 120px;
 }
 .product-id::placeholder {
   opacity: 0.7;
