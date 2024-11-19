@@ -5,12 +5,16 @@ interface ProductListProps {
   products: Product[];
   cartStartDate?: string;
   onClearCart: () => void;
+  onRemoveProduct: (productId: number) => void;
+  onUpdateQuantity: (productId: number, newQuantity: number) => void;
 }
 
 function ProductList({
   products,
   cartStartDate,
-  onClearCart
+  onClearCart,
+  onRemoveProduct,
+  onUpdateQuantity
 }: ProductListProps) {
   const totalItems = products.reduce(
     (sum, product) => sum + product.quantity,
@@ -26,7 +30,10 @@ function ProductList({
       {products.length === 0 ? (
         <>
           <p className='cart-title'>Carrito de compra</p>
-          <p className='cart-empty'>No hay productos en el carrito...</p>
+          <p className='cart-empty'>
+            No hay productos en el carrito aun, prueba agregando arriba con su
+            id y la cantidad que deseas agregar...
+          </p>
         </>
       ) : (
         <>
@@ -53,7 +60,10 @@ function ProductList({
             </thead>
             <tbody>
               {products.map((product: Product, index) => (
-                <tr key={index}>
+                <tr
+                  key={index}
+                  className='product-row'
+                >
                   <td>
                     <img
                       src={product.image}
@@ -62,9 +72,40 @@ function ProductList({
                     />
                   </td>
                   <td>{product.title}</td>
-                  <td>{product.quantity}</td>
+                  <td>
+                    <div className='quantity-controls'>
+                      <button
+                        onClick={() =>
+                          onUpdateQuantity(product.id, product.quantity - 1)
+                        }
+                        className='quantity-button'
+                      >
+                        -
+                      </button>
+                      <span className='quantity-number'>
+                        {product.quantity}
+                      </span>
+                      <button
+                        onClick={() =>
+                          onUpdateQuantity(product.id, product.quantity + 1)
+                        }
+                        className='quantity-button'
+                      >
+                        +
+                      </button>
+                    </div>
+                  </td>
                   <td>{product.price} $</td>
-                  <td>{Number(product.price) * product.quantity} $</td>
+                  <td className='total-cell'>
+                    {Number(product.price) * product.quantity} $
+                    <button
+                      onClick={() => onRemoveProduct(product.id)}
+                      className='remove-product-button'
+                      title='Eliminar producto'
+                    >
+                      ×
+                    </button>
+                  </td>
                 </tr>
               ))}
 

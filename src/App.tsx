@@ -60,6 +60,36 @@ function App() {
     localStorage.removeItem('cartStartDate');
   };
 
+  const handleRemoveProduct = (productId: number) => {
+    const updatedProducts = cartProducts.filter((p) => p.id !== productId);
+    setCartProducts(updatedProducts);
+    localStorage.setItem('cartProducts', JSON.stringify(updatedProducts));
+
+    if (updatedProducts.length === 0) {
+      setCartStartDate(undefined);
+      localStorage.removeItem('cartStartDate');
+    }
+  };
+
+  const handleUpdateQuantity = (productId: number, newQuantity: number) => {
+    if (newQuantity < 1) {
+      return;
+    }
+
+    const updatedProducts = cartProducts.map((product) => {
+      if (product.id === productId) {
+        return {
+          ...product,
+          quantity: newQuantity
+        };
+      }
+      return product;
+    });
+
+    setCartProducts(updatedProducts);
+    localStorage.setItem('cartProducts', JSON.stringify(updatedProducts));
+  };
+
   return (
     <main>
       <Header />
@@ -68,6 +98,8 @@ function App() {
         products={cartProducts}
         cartStartDate={cartStartDate}
         onClearCart={handleClearCart}
+        onRemoveProduct={handleRemoveProduct}
+        onUpdateQuantity={handleUpdateQuantity}
       />
     </main>
   );

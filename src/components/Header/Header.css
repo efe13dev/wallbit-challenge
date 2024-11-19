@@ -5,6 +5,8 @@ header {
   padding: 1.5rem 1.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px 8px 4px 4px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 h1 {
@@ -14,6 +16,61 @@ h1 {
   margin: 0;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.info-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.info-button:hover {
+  transform: scale(1.1);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 300px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 8px;
+  z-index: 1;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content p {
+  color: #2c3e50;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media screen and (max-width: 480px) {
   header {
     padding: 1rem;
@@ -21,7 +78,10 @@ h1 {
 
   h1 {
     font-size: 1.8rem;
-    text-align: center;
-    width: 100%;
+  }
+
+  .dropdown-content {
+    min-width: 250px;
+    right: -10px;
   }
 }
