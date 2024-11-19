@@ -62,7 +62,12 @@ function AddToCart({ onAddProduct }: AddToCartProps) {
 
         <button type='submit'>Agregar</button>
       </form>
-      {error && <p className='error-message'>{error}</p>}
+      {error && (
+        <>
+          <p className='error-message error-primary'>{error}</p>
+          <p className='error-message'>Debes introducir un Id entre 1 y 20</p>
+        </>
+      )}
     </section>
   );
 }

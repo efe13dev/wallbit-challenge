@@ -18,3 +18,5 @@ Todos los estilos están en CSS.
 ### [Repositorio](https://github.com/efe13dev/wallbit-challenge)
 
 ### [Deploy](https://wallbit-challenge-efe-13.vercel.app/)
+
+![Screenshot de la aplicación](./public/screenshoot.jpg)
