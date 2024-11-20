@@ -97,7 +97,7 @@ function ProductList({
                   </td>
                   <td>{product.price} $</td>
                   <td className='total-cell'>
-                    {Number(product.price) * product.quantity} $
+                    {(Number(product.price) * product.quantity).toFixed(2)} $
                     <button
                       onClick={() => onRemoveProduct(product.id)}
                       className='remove-product-button'
